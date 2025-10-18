@@ -290,6 +290,15 @@ dcgmExporter:
   image: dcgm-exporter
   version: 4.4.1-4.5.2-distroless
   imagePullPolicy: IfNotPresent
+  # Annotations applied only to the dcgm-exporter DaemonSet/Pods
+  # annotations:
+  #   ad.datadoghq.com/nvidia-dcgm-exporter.checks: |
+  #     {
+  #       "openmetrics": {
+  #         "instances": [{"openmetrics_endpoint": "http://%%host%%:9400/metrics"}]
+  #       }
+  #     }
+  annotations: {}
   env: []
   resources: {}
   hostPID: false

@@ -1746,6 +1746,20 @@ func TransformDCGMExporter(obj *appsv1.DaemonSet, config *gpuv1.ClusterPolicySpe
 		setContainerEnv(&(obj.Spec.Template.Spec.Containers[0]), env.Name, env.Value)
 	}
 
+	// Apply dcgm-exporter specific annotations (DaemonSet and Pod template)
+	if len(config.DCGMExporter.Annotations) > 0 {
+		if obj.ObjectMeta.Annotations == nil {
+			obj.ObjectMeta.Annotations = make(map[string]string)
+		}
+		if obj.Spec.Template.ObjectMeta.Annotations == nil {
+			obj.Spec.Template.ObjectMeta.Annotations = make(map[string]string)
+		}
+		for k, v := range config.DCGMExporter.Annotations {
+			obj.ObjectMeta.Annotations[k] = v
+			obj.Spec.Template.ObjectMeta.Annotations[k] = v
+		}
+	}
+
 	return nil
 }
 

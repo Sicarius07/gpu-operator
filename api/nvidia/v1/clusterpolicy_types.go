@@ -882,18 +882,24 @@ type DCGMExporterSpec struct {
 	// +operator-sdk:gen-csv:customresourcedefinitions.specDescriptors.x-descriptors="urn:alm:descriptor:com.tectonic.ui:imagePullPolicy"
 	ImagePullPolicy string `json:"imagePullPolicy,omitempty"`
 
-	// Image pull secrets
+    // Image pull secrets
 	// +kubebuilder:validation:Optional
 	// +operator-sdk:gen-csv:customresourcedefinitions.specDescriptors=true
 	// +operator-sdk:gen-csv:customresourcedefinitions.specDescriptors.displayName="Image pull secrets"
 	// +operator-sdk:gen-csv:customresourcedefinitions.specDescriptors.x-descriptors="urn:alm:descriptor:io.kubernetes:Secret"
-	ImagePullSecrets []string `json:"imagePullSecrets,omitempty"`
+    ImagePullSecrets []string `json:"imagePullSecrets,omitempty"`
 
-	// Optional: Define resources requests and limits for each pod
-	// +operator-sdk:gen-csv:customresourcedefinitions.specDescriptors=true
-	// +operator-sdk:gen-csv:customresourcedefinitions.specDescriptors.displayName="Resource Requirements"
-	// +operator-sdk:gen-csv:customresourcedefinitions.specDescriptors.x-descriptors="urn:alm:descriptor:com.tectonic.ui:advanced,urn:alm:descriptor:com.tectonic.ui:resourceRequirements"
-	Resources *ResourceRequirements `json:"resources,omitempty"`
+    // Optional: Annotations to set on the dcgm-exporter DaemonSet/Pods
+    // +operator-sdk:gen-csv:customresourcedefinitions.specDescriptors=true
+    // +operator-sdk:gen-csv:customresourcedefinitions.specDescriptors.displayName="Annotations for DCGM Exporter"
+    // +operator-sdk:gen-csv:customresourcedefinitions.specDescriptors.x-descriptors="urn:alm:descriptor:com.tectonic.ui:advanced,urn:alm:descriptor:com.tectonic.ui:text"
+    Annotations map[string]string `json:"annotations,omitempty"`
+
+    // Optional: Define resources requests and limits for each pod
+    // +operator-sdk:gen-csv:customresourcedefinitions.specDescriptors=true
+    // +operator-sdk:gen-csv:customresourcedefinitions.specDescriptors.displayName="Resource Requirements"
+    // +operator-sdk:gen-csv:customresourcedefinitions.specDescriptors.x-descriptors="urn:alm:descriptor:com.tectonic.ui:advanced,urn:alm:descriptor:com.tectonic.ui:resourceRequirements"
+    Resources *ResourceRequirements `json:"resources,omitempty"`
 
 	// Optional: List of arguments
 	// +operator-sdk:gen-csv:customresourcedefinitions.specDescriptors=true
